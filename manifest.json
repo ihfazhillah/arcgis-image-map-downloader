@@ -7,7 +7,7 @@
       "matches": [
         "https://*.arcgis.com/*"
       ],
-      "js": ["jquery.min.js", "content.js"]
+      "js": ["html2canvas.min.js", "jquery.min.js", "content.js"]
     }
   ]
 }

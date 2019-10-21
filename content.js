@@ -6,5 +6,10 @@ var DownloadIcon = `<span class="dijit dijitReset dijitInline dijitToggleButton 
 $("#webmap-toolbar-left").append(DownloadIcon)
 
 $("#image-download").click(function(e){
-  alert("hello world")
+  var map = document.getElementById("map_container")
+  html2canvas(map, {allowTaint: true}).then((canvas) => {
+    document.body.write(canvas)
+    console.log(canvas)
+  })
 })
+
