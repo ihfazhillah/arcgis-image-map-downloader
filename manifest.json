@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Image Arcgis Downloader",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.arcgis.com/*"
+      ],
+      "js": ["jquery.min.js", "content.js"]
+    }
+  ]
+}
