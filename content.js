@@ -4,12 +4,24 @@ var DownloadIcon = `<span class="dijit dijitReset dijitInline dijitToggleButton 
 <span class="dijitReset dijitInline dijitIcon esriMeasureIcon" data-dojo-attach-point="iconNode"></span><span class="dijitReset dijitToggleButtonIconChar">●</span><span class="dijitReset dijitInline dijitButtonText" id="webmap-download-image_label">Ambil Gambar</span></span></span><input type="button" value="" class="dijitOffScreen" data-dojo-attach-event="onclick:_onClick" tabindex="-1" aria-hidden="true" data-dojo-attach-point="valueNode"></span>`
 
 $("#webmap-toolbar-left").append(DownloadIcon)
+$("body").append(`
+  <div id='image-and-canvas'>
+    <button id="back">Back</button>
+    <button id="download">Download</button>
+  </div>
+`)
+
 
 $("#image-download").click(function(e){
   var map = document.getElementById("map_container")
+  $("#image-and-canvas canvas").remove()
   html2canvas(map, {allowTaint: true}).then((canvas) => {
-    document.body.write(canvas)
+    $("#image-and-canvas").append(canvas)
+    $("#page-border").hide()
     console.log(canvas)
   })
 })
 
+$("#image-and-canvas #back").click(function(e){
+  $("#page-border").show()
+})
