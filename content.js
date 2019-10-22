@@ -15,7 +15,10 @@ $("body").append(`
 $("#image-download").click(function(e){
   var map = document.getElementById("map_container")
   $("#image-and-canvas canvas").remove()
-  html2canvas(map, {allowTaint: true}).then((canvas) => {
+  html2canvas(map, {
+  //  allowTaint: true
+    useCORS: true,
+  }).then((canvas) => {
     $("#image-and-canvas").append(canvas)
     $("#page-border").hide()
     console.log(canvas)
