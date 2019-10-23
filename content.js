@@ -1,3 +1,5 @@
+var cropper;
+
 var DownloadIcon = `<span class="dijit dijitReset dijitInline dijitToggleButton dijitToggleButtonActive dijitActive" role="presentation" dir="ltr" widgetid="webmap-measure" id="image-download">
 <span class="dijitReset dijitInline dijitButtonNode" role="presentation">
 <span class="dijitReset dijitStretch dijitButtonContents" role="button" aria-labelledby="webmap-measure_label" tabindex="-1" id="webmap-download" title="Download Image" style="user-select: none;">
@@ -21,10 +23,21 @@ $("#image-download").click(function(e){
   }).then((canvas) => {
     $("#image-and-canvas").append(canvas)
     $("#page-border").hide()
-    console.log(canvas)
+    cropper = new Cropper(canvas)
   })
 })
 
 $("#image-and-canvas #back").click(function(e){
   $("#page-border").show()
+  cropper.destroy();
+  cropper = null;
+})
+
+$("#download").click(function(){
+  var cropped = cropper.getCroppedCanvas()
+  var croppedCanvasUrl = cropped.toDataURL()
+  var a = document.createElement("a")
+  a.href = croppedCanvasUrl
+  a.download = "arcgis_map.png"
+  a.click();
 })
